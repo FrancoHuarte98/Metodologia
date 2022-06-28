@@ -1,0 +1,20 @@
+Definition of Done (DoD)
+
+Sistema de Turnos
+Grupo 11
+
+Los criterios que el equipo ha decidido implementar son los siguientes:
+● Una tarea debe cumplir con todos los criterios de aceptación detallados.
+● Una tarea debe cumplir con la funcionalidad que le fue asignada.
+● Una tarea terminada implica el correcto funcionamiento de esta, es decir,
+la solución en términos de código debe poder ser testeable y sin bugs,
+con un formato organizado de modo que otra persona pueda
+interpretarlo sin problemas.
+● Se debe realizar el testeo de la tarea antes de darla por finalizada. El
+testing debe ser documentado siguiendo el formato template
+especificado y cada testing debe subirse a la carpeta llamada “Testeo”.
+● Se debe tener la aprobación de uno o a lo sumo dos de los miembros
+del equipo, es decir la tarea debe ser verificada por otro miembro del
+equipo para ser dada como terminada.
+
+
