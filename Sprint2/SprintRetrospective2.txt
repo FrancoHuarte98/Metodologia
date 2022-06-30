@@ -1,0 +1,43 @@
+Summary Sprint Retrospective: Sprint 2
+
+Grupo 11
+
+1. People invited to the meeting
+● Huarte Franco
+● Lalanne Agustin
+● Duana Lucas
+● Ituarte Octavio
+● Isern Paloma
+● Echauri Florencia
+
+2. List of attendees
+● Huarte Franco
+● Lalanne Agustin
+● Duana Lucas
+● Ituarte Octavio
+● Isern Paloma
+● Echauri Florencia
+
+3. ¿Qué funcionó bien?
+● En este Sprint logramos realizar un diagrama de clases completo y bien definido.
+● Se utilizaron correctamente los template brindados por la cátedra.
+● El trabajo en grupo fue coordinado y hubo una buena comunicación.
+● Cada miembro del equipo colaboró en el incremento del Sprint 1.
+● Pudimos corregir los errores del sprint anterior, como por ejemplo agregar el template de testeo, modificar el criterio de done, etc.
+● Se logro una buena organizacion dentro del repositorio para este Sprint, ya que se subio una carpeta llamada "Sprint 1" donde facilmente se podía ver todo el contenido del mismo.
+
+4. ¿Qué no funcionó bien?
+● No hubo una interfaz bien definida para poder realizar en detalle el testing verificando que la funcionalidad pedida sea efectivamente cumplida.
+● El tiempo empleado no fue el óptimo ya que la realizacion de las tareas se encontraron concentradas en pocos dias, no respetando la metodología.
+● No hubo una buena distribución de las tareas, lo que llevó tambien a que no se respetara el modelo de trabajo de Scrum.
+● El diagrama de Alto nivel incluyó demasiado detalle.
+● El template de testeo no fue completado con los testing correspondientes a cada tarea realizada.
+● Varios de los archivos de texto fueron subidos como pdf, lo cual fue innecesario.
+● Como grupo, no pudimos resolver ciertas cuestiones que tienen que ver con la metodologia Scrum, haciendo un mal uso de la misma.
+
+5. ¿Qué haremos como equipo para mejorar en el próximo Sprint?
+● Se pretende tener una distribucion de tareas mas equitativa, y mejor organizadas.
+● Para el proximo Sprint se espera cumplir con el lapso adecuado en tiempo para ir realizando las tareas, teniendo en cuenta la metodologia.
+● Tomaremos una mejor postura frente a Scrum, es decir, el objetivo será respetar y hacer uso de las herramientas de Scrum correctamente.
+● Mantener una buena comunicacion, ya que es lo esencial al momento de realizar el Sprint.
+
