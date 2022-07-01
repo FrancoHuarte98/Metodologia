@@ -51,6 +51,7 @@ public class Plataforma {
         }
         return null;
     }
+
     public static Paciente loginPaciente() {
         String opcion = "s";
         Scanner scanner = new Scanner(System.in);
@@ -186,9 +187,32 @@ public class Plataforma {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Identifiquese como secretaria o paciente, ingresando 's' o 'p' respectivamente:");
         String linea = scanner.next();
-        if(linea.equals("p"))
-            p= loginPaciente();
-
+        if(linea.equals("p")) {
+            System.out.println("Identifiquese como paciente registrado o nuevo, ingresando 'r' o 'n'");
+            linea = scanner.next();
+            if (linea.equals("n")) {
+                Scanner entrada = new Scanner(System.in);
+                System.out.println("Ingrese su DNI:");
+                int dni = entrada.nextInt();
+                System.out.println("Ingrese su nombre:");
+                String nombre = entrada.next();
+                System.out.println("Ingrese su apellido:");
+                String apellido = entrada.next();
+                System.out.println("Ingrese su direccion:");
+                String direccion = entrada.next();
+                System.out.println("Ingrese su telefono:");
+                int telefono = entrada.nextInt();
+                System.out.println("Ingrese su email:");
+                String email = entrada.next();
+                System.out.println("Ingrese su obra social:");
+                String obraSoc = entrada.next();
+                System.out.println("Ingrese su numero de afiliado:");
+                int nroAfiliado = entrada.nextInt();
+                p = new Paciente(nombre,apellido,direccion,telefono,dni,email,obraSoc,nroAfiliado);
+                cuentasPaciente.put(p.getDni(),p);
+            }else
+                p = loginPaciente();
+        }
         if(linea.equals("s"))
             s= login();
 
