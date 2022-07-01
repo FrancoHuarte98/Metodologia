@@ -42,9 +42,9 @@ public class Plataforma {
     
     public static String ingresarObraSocial() {
     	Scanner scanner = new Scanner (System.in);
-    	System.out.println("Ingrese especialidad deseada");
-    	String especialidad = scanner.next();
-    	return especialidad;
+    	System.out.println("Ingrese obra social deseada");
+    	String obraSocial = scanner.next();
+    	return obraSocial;
     }
 
     
@@ -173,20 +173,19 @@ public class Plataforma {
                         break;
                     case 2:
                         System.out.println("Has seleccionado la opcion 2: Buscar medicos segun obra social");
-                        //falta pedir que ingrese obra social
-                        //Inicializar filtro
-                       /* for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet())
+                        filtro = new FiltroObraSocial(ingresarObraSocial());
+                        for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet())
                         	meds.addAll(entry.getValue().get_Medicos());
                         	for (Medico m: meds) {
 	                        	if ((!resultado.contains(m)) && (filtro.cumple(m)))
 	                        		resultado.add(m);}
 	                    meds.clear();
-                        resultado.clear();*/
+                        resultado.clear();
                         break;
                     case 3:
                     	System.out.println("Has seleccionado la opcion 3: Buscar medicos segun obra social y especialidad");
                     	filtro= new FiltroEspecialidad(ingresarEspecialidad());
-                    	//falta pedir que ingrese obra social
+                    	Filtro filtro2 = new FiltroObraSocial(ingresarObraSocial());
                     	//inicializar filtro and
                        /* for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet())
                         	meds.addAll(entry.getValue().get_Medicos());
@@ -221,12 +220,12 @@ public class Plataforma {
         
         
         
-        Medico m1 = new Medico(1, "Lucas", "Quiroga", "Colombia 622", 123456, 38178273, "quiroga@gmail.com", 11, 17, "Neurologia");
-        Medico m2 = new Medico(2, "Alfredo", "Macri", "Garibaldi 1050", 654321, 30123456, "alfredoMacri_doc@gmail.com", 11, 17, "Cardiologia");
-        Medico m3 = new Medico(3, "Paloma", "Isern", "San martin 995", 432564, 17167456, "paloiser_doc@gmail.com", 11, 17, "Dermatologia");
-        Medico m4 = new Medico(4, "Franco", "Huarte", "Gaucho Rivero 242", 666543, 17221496, "piernaquebrada_doc@gmail.com", 11, 17, "Cirugia");
-        Medico m5 = new Medico(5, "Jorge", "Gogorza", "San lorenzo 323", 324567, 13545423, "jorgegogorza_doc@gmail.com", 11, 17, "Neurologia");
-        Medico m6 = new Medico(6, "Franco", "Raineri", "Las heras 1368", 876545, 24568798, "francoraineri_doc@gmail.com", 11, 17, "Neumonologia");
+        Medico m1 = new Medico(1, "Lucas", "Quiroga", "Colombia 622", 123456, 38178273, "quiroga@gmail.com", 11, 17, "Neurologia", "ioma");
+        Medico m2 = new Medico(2, "Alfredo", "Macri", "Garibaldi 1050", 654321, 30123456, "alfredoMacri_doc@gmail.com", 11, 17, "Cardiologia", "osde");
+        Medico m3 = new Medico(3, "Paloma", "Isern", "San martin 995", 432564, 17167456, "paloiser_doc@gmail.com", 11, 17, "Dermatologia", "ioma");
+        Medico m4 = new Medico(4, "Franco", "Huarte", "Gaucho Rivero 242", 666543, 17221496, "piernaquebrada_doc@gmail.com", 11, 17, "Cirugia", "swiss medical");
+        Medico m5 = new Medico(5, "Jorge", "Gogorza", "San lorenzo 323", 324567, 13545423, "jorgegogorza_doc@gmail.com", 11, 17, "Neurologia", "osecac");
+        Medico m6 = new Medico(6, "Franco", "Raineri", "Las heras 1368", 876545, 24568798, "francoraineri_doc@gmail.com", 11, 17, "Neumonologia", "ioma");
 
         s1.addMedico(m1);
         s1.addMedico(m2);

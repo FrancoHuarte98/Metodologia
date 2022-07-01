@@ -7,16 +7,18 @@ public class Medico extends Persona {
     private int horaInicio;
     private int horaFin;
     private String especialidad;
+    private String obraSocial;
     private List<Turno> turnos;
 
     public Medico(int Matricula, String nombre, String apellido, String direccion, int telefono, int dni, String email,
-                  int horaInicio, int horaFin, String especialidad) {
+                  int horaInicio, int horaFin, String especialidad, String obraSocial) {
         super(nombre, apellido, direccion, telefono, dni, email);
         this.Matricula = Matricula;
         this.turnos = new ArrayList<Turno>();
         this.horaInicio = horaInicio;
         this.horaFin=horaFin;
         this.especialidad = especialidad;
+        this.obraSocial = obraSocial;
     }
     
     public String getEspecialidad() {
@@ -100,4 +102,8 @@ public class Medico extends Persona {
         System.out.println("No se encontro la fecha del turno: "+date.toString()+" hora: "+ hora);
         return false;
     }
+
+	public String getObraSocial() {
+		return obraSocial;
+	}
 }
