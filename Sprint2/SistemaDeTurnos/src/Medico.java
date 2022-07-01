@@ -6,15 +6,21 @@ public class Medico extends Persona {
     private int Matricula;
     private int horaInicio;
     private int horaFin;
+    private String especialidad;
     private List<Turno> turnos;
 
     public Medico(int Matricula, String nombre, String apellido, String direccion, int telefono, int dni, String email,
-                  int horaInicio, int horaFin) {
+                  int horaInicio, int horaFin, String especialidad) {
         super(nombre, apellido, direccion, telefono, dni, email);
         this.Matricula = Matricula;
         this.turnos = new ArrayList<Turno>();
         this.horaInicio = horaInicio;
         this.horaFin=horaFin;
+        this.especialidad = especialidad;
+    }
+    
+    public String getEspecialidad() {
+    	return this.especialidad;
     }
 
     public int getMatricula() {

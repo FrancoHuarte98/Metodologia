@@ -13,6 +13,10 @@ public class Secretaria extends Persona {
     public void addMedico(Medico m) {
         this.medicos.add(m);
     }
+    
+    public ArrayList<Medico> get_Medicos(){
+    	return new ArrayList<Medico> (medicos);
+    }
 
     public Medico getMedico(int matricula){
         for(Medico medico: medicos)

@@ -32,7 +32,22 @@ public class Plataforma {
         String apellido=scanner.next();
         return (nombre+apellido);
     }
+    
+    public static String ingresarEspecialidad() {
+    	Scanner scanner = new Scanner (System.in);
+    	System.out.println("Ingrese especialidad deseada");
+    	String especialidad = scanner.next();
+    	return especialidad;
+    }
+    
+    public static String ingresarObraSocial() {
+    	Scanner scanner = new Scanner (System.in);
+    	System.out.println("Ingrese especialidad deseada");
+    	String especialidad = scanner.next();
+    	return especialidad;
+    }
 
+    
     public static Secretaria login(){
         String opcion="s";
         Scanner scanner = new Scanner(System.in);
@@ -121,6 +136,80 @@ public class Plataforma {
         }
     }
 
+    
+    public static void menuPaciente(Paciente p){
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        Filtro filtro;
+        ArrayList <Medico> resultado = new ArrayList<>();
+        ArrayList<Medico> meds = new ArrayList<>();
+        boolean salir = false;
+        while (!salir) {
+            System.out.println("1. Buscar medicos segun especialidad");
+            System.out.println("2. Buscar medicos segun obra social");
+            System.out.println("3. Buscar medicos segun obra social y especialidad");
+            System.out.println("4. Salir");
+            try {
+                System.out.println("Escribe una de las opciones");
+                opcion = scanner.nextInt();
+
+                switch (opcion) {
+                    case 1:
+                        System.out.println("Has seleccionado la opcion 1: Buscar medicos segun especialidad");
+                        filtro = new FiltroEspecialidad(ingresarEspecialidad());
+                        for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet())
+                        	meds.addAll(entry.getValue().get_Medicos());
+                        	for (Medico m: meds) {
+	                        	if ((!resultado.contains(m)) && (filtro.cumple(m)))
+	                        		resultado.add(m);}
+                        if (resultado.size()==0)
+                        	System.out.println("No hay medicos con dicha especialidad");
+                        else
+                        {System.out.println("Los medicos con dicha especialidad son");
+                        for (Medico m: resultado)
+                        	System.out.println ("Medico: "+ m.getNombre()+" "+ m.getApellido());}
+                        meds.clear();
+                        resultado.clear();
+                        break;
+                    case 2:
+                        System.out.println("Has seleccionado la opcion 2: Buscar medicos segun obra social");
+                        //falta pedir que ingrese obra social
+                        //Inicializar filtro
+                       /* for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet())
+                        	meds.addAll(entry.getValue().get_Medicos());
+                        	for (Medico m: meds) {
+	                        	if ((!resultado.contains(m)) && (filtro.cumple(m)))
+	                        		resultado.add(m);}
+	                    meds.clear();
+                        resultado.clear();*/
+                        break;
+                    case 3:
+                    	System.out.println("Has seleccionado la opcion 3: Buscar medicos segun obra social y especialidad");
+                    	filtro= new FiltroEspecialidad(ingresarEspecialidad());
+                    	//falta pedir que ingrese obra social
+                    	//inicializar filtro and
+                       /* for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet())
+                        	meds.addAll(entry.getValue().get_Medicos());
+                        	for (Medico m: meds) {
+	                        	if ((!resultado.contains(m)) && (filtro.cumple(m)))
+	                        		resultado.add(m);}
+	                       	meds.clear();
+                        	resultado.clear();*/
+
+                    case 4:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Solo numeros entre 1 y 3");
+                }
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Debes insertar un numero");
+                scanner.next();
+            }
+        }
+    }
+    
     public static void main(String[] args) {
         System.out.println("Bienvenido al sistema de turnos!");
         System.out.println("Grupo 11");
@@ -129,13 +218,15 @@ public class Plataforma {
         Secretaria s2 = new Secretaria("Lorena", "Martinez", "Lorena Martinez", "San Martin 200", 2020, 12012456, "lorena@gmail.com");
         cuentasSecretaria.put(1, s1);
         cuentasSecretaria.put(2, s2);
-
-        Medico m1 = new Medico(1, "Lucas", "Quiroga", "Colombia 622", 123456, 38178273, "quiroga@gmail.com", 11, 17);
-        Medico m2 = new Medico(2, "Alfredo", "Macri", "Garibaldi 1050", 654321, 30123456, "alfredoMacri_doc@gmail.com", 11, 17);
-        Medico m3 = new Medico(3, "Paloma", "Isern", "San martin 995", 432564, 17167456, "paloiser_doc@gmail.com", 11, 17);
-        Medico m4 = new Medico(4, "Franco", "Huarte", "Gaucho Rivero 242", 666543, 17221496, "piernaquebrada_doc@gmail.com", 11, 17);
-        Medico m5 = new Medico(5, "Jorge", "Gogorza", "San lorenzo 323", 324567, 13545423, "jorgegogorza_doc@gmail.com", 11, 17);
-        Medico m6 = new Medico(6, "Franco", "Raineri", "Las heras 1368", 876545, 24568798, "francoraineri_doc@gmail.com", 11, 17);
+        
+        
+        
+        Medico m1 = new Medico(1, "Lucas", "Quiroga", "Colombia 622", 123456, 38178273, "quiroga@gmail.com", 11, 17, "Neurologia");
+        Medico m2 = new Medico(2, "Alfredo", "Macri", "Garibaldi 1050", 654321, 30123456, "alfredoMacri_doc@gmail.com", 11, 17, "Cardiologia");
+        Medico m3 = new Medico(3, "Paloma", "Isern", "San martin 995", 432564, 17167456, "paloiser_doc@gmail.com", 11, 17, "Dermatologia");
+        Medico m4 = new Medico(4, "Franco", "Huarte", "Gaucho Rivero 242", 666543, 17221496, "piernaquebrada_doc@gmail.com", 11, 17, "Cirugia");
+        Medico m5 = new Medico(5, "Jorge", "Gogorza", "San lorenzo 323", 324567, 13545423, "jorgegogorza_doc@gmail.com", 11, 17, "Neurologia");
+        Medico m6 = new Medico(6, "Franco", "Raineri", "Las heras 1368", 876545, 24568798, "francoraineri_doc@gmail.com", 11, 17, "Neumonologia");
 
         s1.addMedico(m1);
         s1.addMedico(m2);
@@ -167,6 +258,9 @@ public class Plataforma {
         s1.addTurno(t4);
         s1.addTurno(t5);
         s2.addTurno(t6);
+        
+ 
+        
         //System.out.println("Datos del sistema:");
         //System.out.println("-----------------------");
         /*
@@ -175,7 +269,8 @@ public class Plataforma {
 
         System.out.println("-----------------------");
         */
-
+        
+        
 
         Secretaria s = null;
         Paciente p= null;
@@ -210,8 +305,12 @@ public class Plataforma {
                 int nroAfiliado = entrada.nextInt();
                 p = new Paciente(nombre,apellido,direccion,telefono,dni,email,obraSoc,nroAfiliado);
                 cuentasPaciente.put(p.getDni(),p);
+                menuPaciente(p);
             }else
-                p = loginPaciente();
+                {p = loginPaciente();
+                if (p != null)
+                	menuPaciente(p);}
+            	
         }
         if(linea.equals("s"))
             s= login();
