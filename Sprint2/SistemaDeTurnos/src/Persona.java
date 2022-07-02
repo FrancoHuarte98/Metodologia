@@ -2,7 +2,7 @@ public abstract class Persona {
     private String nombre;
     private String apellido;
     private String direccion;
-    private int telefono;
+    private long telefono;
     private int dni;
     private String email;
 
@@ -15,7 +15,7 @@ public abstract class Persona {
     public String getDireccion() {
         return direccion;
     }
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
     public int getDni() {
@@ -24,7 +24,7 @@ public abstract class Persona {
     public String getEmail() {
         return email;
     }
-    public Persona(String nombre, String apellido, String direccion, int telefono, int dni, String email) {
+    public Persona(String nombre, String apellido, String direccion, long telefono, int dni, String email) {
         super();
         this.nombre = nombre;
         this.apellido = apellido;

@@ -293,9 +293,10 @@ public class Plataforma {
                 System.out.println("Ingrese su apellido:");
                 String apellido = entrada.next();
                 System.out.println("Ingrese su direccion:");
-                String direccion = entrada.next();
+                Scanner aux = new Scanner(System.in);
+                String direccion = aux.nextLine();
                 System.out.println("Ingrese su telefono:");
-                int telefono = entrada.nextInt();
+                long telefono = entrada.nextLong();
                 System.out.println("Ingrese su email:");
                 String email = entrada.next();
                 System.out.println("Ingrese su obra social:");
@@ -303,6 +304,7 @@ public class Plataforma {
                 System.out.println("Ingrese su numero de afiliado:");
                 int nroAfiliado = entrada.nextInt();
                 p = new Paciente(nombre,apellido,direccion,telefono,dni,email,obraSoc,nroAfiliado);
+                System.out.println("El paciente se registro con exito");
                 cuentasPaciente.put(p.getDni(),p);
                 menuPaciente(p);
             }else

@@ -1,0 +1,68 @@
+Sistema de turnos
+
+Testing
+
+Versión 1.0
+Tabla de contenido
+
+[ Datos del Sistema ]
+
+[ Datos de entrada ]
+
+[ Datos de Salida esperados ]
+
+[ Datos de Salida obtenidos ]
+
+[ Comentarios ]
+
+Funcionalidad a testear: Registrar paciente
+
+Datos del sistema
+Secretarias:
+S1(nombre: Josefa, apellido: Martínez, usuario: Josefa Martínez, dirección: Alsina 200, teléfono: 202020, DNI: 35012456, email: josefa@gmail.com )
+S2(nombre: Lorena, apellido: Martínez, usuario: Lorena Martínez, dirección: San Martin 200, teléfono: 2020, DNI: 12012456, email: lorena@gmail.com )
+
+Cuentas:
+(contraseña: 1, secretaría: s1);
+(contraseña: 2, secretaría: s2);
+
+Medicos:
+m1 (matrícula:1, nombre: Lucas, teléfono: Quiroga, dirección: Colombia 622, dirección: 123456, DNI: 38178273, quiroga@gmail.com , 11, 17);
+m2 (matrícula: 2, nombre: Alfredo, apellido: Macri, dirección: Garibaldi 1050, teléfono:654321, 30123456, alfredoMacri_doc@gmail.com , 11, 17);
+m3 (matrícula: 3, nombre: Paloma, apellido: Isern, dirección: San Martin 995, teléfono: 432564, 17167456, paloiser_doc@gmail.com , 11, 17);
+m4 (matrícula: 4, nombre: Franco, apellido: Huarte, dirección: Gaucho Rivero 242, teléfono: 666543, 17221496, huarte@gmail.com ”, 11, 17);
+m5 (matrícula: 5, nombre: "Jorge", apellido: Gogorza, dirección: San Lorenzo 323, teléfono: 324567, 13545423, jorgegogorza_doc@gmail.com , 11, 17);
+m6 (matrícula: 6, nombre: Franco, apellido: Raineri, dirección: Las Heras 1368, teléfono: 876545, 24568798, francoraineri_doc@gmail.com , 11, 17);
+
+Pacientes:
+p1(nombre: Juan, apellido: Ignacio, dirección: Alsina 200, teléfono: 450450, email: juani@gmail.com , obra social: osde, número de afiliado: 134545)
+p2(nombre: Juan, apellido: Pablo, dirección: Garibaldi 300, teléfono: 415415, email: juanpa@gmail.com , obra social: osde, número de afiliado: 131313)
+
+Turnos:
+T1(paciente: p1, médico: m1, fecha: 2022-01-01, horario:17)
+T2(paciente: p2, médico: m1, fecha: 2022-01-02, horario:16)
+T3(paciente: p1, médico: m2, fecha: 2022-01-03, horario:14)
+T4(paciente: p2, médico: m3, fecha: 2022-01-01, horario:15)
+T5(paciente: p1, médico: m4, fecha: 2022-01-01, horario:15)
+T6(paciente: p1, médico: m5, fecha: 2022-01-04, horario:11)
+
+Datos de entrada:
+
+DNI de registro: 42630319
+Nombre de registro: Lucas
+Apellido de registro: Duana
+Direccion de registro: San martin 1368
+Telefono de registro: 2494000631
+Email de registro: lucasd-mdp@hotmail.com.ar
+Obra social de registro: ioma
+Numero de afiliado de registro: 1522
+
+
+Datos de Salida esperados:
+Paciente registrado en el sistema
+
+Datos de Salida obtenidos
+Paciente registrado en el sistema 
+
+Comentarios
+El testing resulto exitoso, la funcionalidad cumple con la tarea requerida.
