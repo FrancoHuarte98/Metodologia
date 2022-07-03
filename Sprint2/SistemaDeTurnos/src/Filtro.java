@@ -1,4 +1,3 @@
-
 public interface Filtro {
-	boolean cumple(Medico m);
+    boolean cumple(Medico m);
 }

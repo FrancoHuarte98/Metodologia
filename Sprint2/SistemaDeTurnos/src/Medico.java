@@ -20,9 +20,9 @@ public class Medico extends Persona {
         this.especialidad = especialidad;
         this.obraSocial = obraSocial;
     }
-    
+
     public String getEspecialidad() {
-    	return this.especialidad;
+        return this.especialidad;
     }
 
     public int getMatricula() {
@@ -103,7 +103,7 @@ public class Medico extends Persona {
         return false;
     }
 
-	public String getObraSocial() {
-		return obraSocial;
-	}
+    public String getObraSocial() {
+        return obraSocial;
+    }
 }
