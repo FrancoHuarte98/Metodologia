@@ -136,13 +136,48 @@ public class Plataforma {
         }
     }
 
+    public static void verHorariosDelMedico(Medico m) {
+    	System.out.println("Medico seleccionado : " + m.getNombre() + " " + m.getApellido());
+    	System.out.println(" -Horario de atencion: " + m.getHoraInicio() + " - " + m.getHoraFin());
+    }
+    
+    public static void mostrarMedicosQueCumplen(Filtro filtro) {
+        ArrayList<Medico> meds = new ArrayList<>();
+        ArrayList<Medico> resultado = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet())
+        	meds.addAll(entry.getValue().get_Medicos());
+        	for (Medico m: meds) {
+            	if ((!resultado.contains(m)) && (filtro.cumple(m)))
+            		resultado.add(m);
+            	}
+        	if (resultado.size()==0)
+        		System.out.println("No hay medicos que cumplan con el filtro buscado");
+        	else
+        		{System.out.println("Los medicos que cumplen con el filtro buscado son");
+        		for (Medico m: resultado)
+        			System.out.println ("Medico: "+ m.getNombre()+" "+ m.getApellido());
+        		System.out.println("Si desea seleccionar alguno de los medicos listados ingrese 's', de lo contrario ingrese cualquier otro caracter");
+        		String linea = scanner.next();
+        		if (linea.equals("s")) 
+        			{ 	System.out.println("Ingrese el nombre del medico con el que desea solicitar un turno");
+        				String nombreCompleto = ingresarNombreApellidoMedico(); 
+        				for (Medico m: resultado) {
+        					String med = m.getNombre() + m.getApellido();
+        					if (med.equals(nombreCompleto)) {
+        						verHorariosDelMedico(m);
+        						//SDT-65: "Se debe mostrar una lista de los próximos 10 turnos disponibles del medico seleccionado."
+        					}
+        				}
+        			}
+        		}
+    }
     
     public static void menuPaciente(Paciente p){
         Scanner scanner = new Scanner(System.in);
         int opcion;
         Filtro filtro;
         ArrayList <Medico> resultado = new ArrayList<>();
-        ArrayList<Medico> meds = new ArrayList<>();
         boolean salir = false;
         while (!salir) {
             System.out.println("1. Buscar medicos segun especialidad");
@@ -157,44 +192,18 @@ public class Plataforma {
                     case 1:
                         System.out.println("Has seleccionado la opcion 1: Buscar medicos segun especialidad");
                         filtro = new FiltroEspecialidad(ingresarEspecialidad());
-                        for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet())
-                        	meds.addAll(entry.getValue().get_Medicos());
-                        	for (Medico m: meds) {
-	                        	if ((!resultado.contains(m)) && (filtro.cumple(m)))
-	                        		resultado.add(m);}
-                        if (resultado.size()==0)
-                        	System.out.println("No hay medicos con dicha especialidad");
-                        else
-                        {System.out.println("Los medicos con dicha especialidad son");
-                        for (Medico m: resultado)
-                        	System.out.println ("Medico: "+ m.getNombre()+" "+ m.getApellido());}
-                        meds.clear();
-                        resultado.clear();
+                        mostrarMedicosQueCumplen(filtro);
                         break;
                     case 2:
                         System.out.println("Has seleccionado la opcion 2: Buscar medicos segun obra social");
                         filtro = new FiltroObraSocial(ingresarObraSocial());
-                        for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet())
-                        	meds.addAll(entry.getValue().get_Medicos());
-                        	for (Medico m: meds) {
-	                        	if ((!resultado.contains(m)) && (filtro.cumple(m)))
-	                        		resultado.add(m);}
-	                    meds.clear();
-                        resultado.clear();
+                        mostrarMedicosQueCumplen(filtro);
                         break;
                     case 3:
                     	System.out.println("Has seleccionado la opcion 3: Buscar medicos segun obra social y especialidad");
                     	filtro= new FiltroEspecialidad(ingresarEspecialidad());
                     	Filtro filtro2 = new FiltroObraSocial(ingresarObraSocial());
                     	//inicializar filtro and
-                       /* for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet())
-                        	meds.addAll(entry.getValue().get_Medicos());
-                        	for (Medico m: meds) {
-	                        	if ((!resultado.contains(m)) && (filtro.cumple(m)))
-	                        		resultado.add(m);}
-	                       	meds.clear();
-                        	resultado.clear();*/
-
                     case 4:
                         salir = true;
                         break;
@@ -258,7 +267,7 @@ public class Plataforma {
         s1.addTurno(t5);
         s2.addTurno(t6);
         
- 
+        		
         
         //System.out.println("Datos del sistema:");
         //System.out.println("-----------------------");
