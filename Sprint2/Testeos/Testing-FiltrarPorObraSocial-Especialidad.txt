@@ -15,7 +15,7 @@ Tabla de contenido
 
 [ Comentarios ]
 
-Funcionalidad a testear: Buscar Medicos filtrando por Especialidad
+Funcionalidad a testear: Buscar Medicos filtrando por Especialidad y obra social
 
 Datos del sistema
 Secretarias:
