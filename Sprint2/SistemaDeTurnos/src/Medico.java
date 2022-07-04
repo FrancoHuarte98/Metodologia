@@ -106,4 +106,14 @@ public class Medico extends Persona {
     public String getObraSocial() {
         return obraSocial;
     }
+
+    public List<Turno> getTurnosDelDia(LocalDate f){
+    	List<Turno> r = new ArrayList<Turno>();
+    	for (Turno turno: turnos) {
+    		if (turno.getFechaturno().equals(f))
+    			r.add(turno);
+    	}
+		return r;    	
+    }
+
 }

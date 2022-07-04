@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 
@@ -83,6 +84,48 @@ public class Plataforma {
         }
         return null;
     }
+    public static void verProximosTurnos(Medico m) {
+    	System.out.println("Los proximos 10 turnos del medico " + m.getApellido() + " son:");
+    	LocalDate l = LocalDate.now();
+    	LocalTime t = LocalTime.now();
+    	int j = 0;
+    	int i = 0;
+    	while (i<10) {
+    		if (m.getTurnosDelDia(l).isEmpty()) {
+	    		for (int k = t.getHour() + 1; k<=m.getHoraFin(); k++) {
+	    			if (k>=m.getHoraInicio()) {
+	    				System.out.println("Tenes turno disponible el dia " + l.getDayOfWeek() + " a las " + k); 
+	    				i++;
+	    			}
+					if (i==10) break;
+	    		}
+    		}
+    		else 
+	    		for (int h = t.getHour(); h<=m.getHoraFin(); h++) {
+	    			if (h>=m.getHoraInicio()) {
+	    				if (m.getTurnosDelDia(l).size() > j) {
+		    				if (h!= m.getTurnosDelDia(l).get(j).getHoraTurno()) { 
+		    					System.out.println("Tenes turno disponible el dia " + l.getDayOfWeek() + " a las " + h);
+		    					i++;
+		    					if (i==10) break;
+		    				}
+		    				else {
+		    					j++;
+		    				}
+	    				} 
+	    				else {
+	    					System.out.println("Tenes turno disponible el dia " + l.getDayOfWeek() + " a las " + h);
+    						i++;
+    						if (i==10) break;
+	    				}	    					
+	    			}
+	    		}		
+			l = l.plusDays(1);
+			t= LocalTime.of(8, 00);
+    	}
+    }
+
+
 
     public static void menuSecretaria(Secretaria s){
         Scanner scanner = new Scanner(System.in);
@@ -166,7 +209,7 @@ public class Plataforma {
                     String med = m.getNombre() + m.getApellido();
                     if (med.equals(nombreCompleto)) {
                         verHorariosDelMedico(m);
-                        //SDT-65: "Se debe mostrar una lista de los próximos 10 turnos disponibles del medico seleccionado."
+                        verProximosTurnos(m);
                     }
                 }
             }
