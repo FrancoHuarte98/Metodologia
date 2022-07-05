@@ -251,7 +251,6 @@ public class Plataforma {
         if(linea.equals("s")){
             LocalDate d1= ingresarFechaTurno();
             int h= ingresarHoraTurno();
-            ArrayList<Medico> meds = new ArrayList<>();
             Medico m=null; Secretaria s=null;
             for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet()) {
                 if(entry.getValue().getMedico(nombreCompleto)!=null) {
@@ -306,12 +305,10 @@ public class Plataforma {
         }
     }
 
-    public static void menuPaciente(Paciente p){
+    public static void menuPaciente(){
         Scanner scanner = new Scanner(System.in);
         int opcion;
-        Turno turno=null;
         Filtro filtro;
-        ArrayList <Medico> resultado = new ArrayList<>();
         boolean salir = false;
         while (!salir) {
             System.out.println("1. Buscar medicos segun especialidad");
@@ -412,12 +409,12 @@ public class Plataforma {
             if (linea.equals("n")) {
                 p=registrarPaciente();
                 cuentasPaciente.put(p.getDni(),p);
-                menuPaciente(p);
+                menuPaciente();
             }
             else {
                 p = loginPaciente();
                 if (p != null)
-                    menuPaciente(p);
+                    menuPaciente();
             }
         }
         if(linea.equals("s"))
