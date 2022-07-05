@@ -29,5 +29,7 @@ public class Paciente extends Persona{
         return obraSocial;
     }
 
-
+    public boolean addTurno(Turno turno){
+        return(turnos.add(turno));
+    }
 }

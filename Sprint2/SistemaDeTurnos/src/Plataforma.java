@@ -48,6 +48,28 @@ public class Plataforma {
         return obraSocial;
     }
 
+    public static Paciente registrarPaciente(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Ingrese su DNI:");
+        int dni = entrada.nextInt();
+        System.out.println("Ingrese su nombre:");
+        String nombre = entrada.next();
+        System.out.println("Ingrese su apellido:");
+        String apellido = entrada.next();
+        System.out.println("Ingrese su direccion:");
+        Scanner aux = new Scanner(System.in);
+        String direccion = aux.nextLine();
+        System.out.println("Ingrese su telefono:");
+        long telefono = entrada.nextLong();
+        System.out.println("Ingrese su email:");
+        String email = entrada.next();
+        System.out.println("Ingrese su obra social:");
+        String obraSoc = entrada.next();
+        System.out.println("Ingrese su numero de afiliado:");
+        int nroAfiliado = entrada.nextInt();
+        System.out.println("El paciente se registro con exito");
+        return(new Paciente(nombre,apellido,direccion,telefono,dni,email,obraSoc,nroAfiliado));
+    }
 
     public static Secretaria login(){
         String opcion="s";
@@ -84,45 +106,52 @@ public class Plataforma {
         }
         return null;
     }
+
     public static void verProximosTurnos(Medico m) {
-    	System.out.println("Los proximos 10 turnos del medico " + m.getApellido() + " son:");
-    	LocalDate l = LocalDate.now();
-    	LocalTime t = LocalTime.now();
-    	int j = 0;
-    	int i = 0;
-    	while (i<10) {
-    		if (m.getTurnosDelDia(l).isEmpty()) {
-	    		for (int k = t.getHour() + 1; k<=m.getHoraFin(); k++) {
-	    			if (k>=m.getHoraInicio()) {
-	    				System.out.println("Tenes turno disponible el dia " + l.getDayOfWeek() + " a las " + k); 
-	    				i++;
-	    			}
-					if (i==10) break;
-	    		}
-    		}
-    		else 
-	    		for (int h = t.getHour(); h<=m.getHoraFin(); h++) {
-	    			if (h>=m.getHoraInicio()) {
-	    				if (m.getTurnosDelDia(l).size() > j) {
-		    				if (h!= m.getTurnosDelDia(l).get(j).getHoraTurno()) { 
-		    					System.out.println("Tenes turno disponible el dia " + l.getDayOfWeek() + " a las " + h);
-		    					i++;
-		    					if (i==10) break;
-		    				}
-		    				else {
-		    					j++;
-		    				}
-	    				} 
-	    				else {
-	    					System.out.println("Tenes turno disponible el dia " + l.getDayOfWeek() + " a las " + h);
-    						i++;
-    						if (i==10) break;
-	    				}	    					
-	    			}
-	    		}		
-			l = l.plusDays(1);
-			t= LocalTime.of(8, 00);
-    	}
+        System.out.println("Los proximos 10 turnos del medico " + m.getApellido() + " son:");
+        LocalDate l = LocalDate.now();
+        LocalTime t = LocalTime.now();
+        List<LocalDate> fechasDisponible= new ArrayList<>();
+        List<Integer> horas= new ArrayList<>();
+        int j = 0;
+        int i = 0;
+        while (i<10) {
+            if (m.getTurnosDelDia(l).isEmpty()) {
+                for (int k = t.getHour() + 1; k<=m.getHoraFin() && i<10; k++) {
+                    if (k>=m.getHoraInicio()) {
+                        System.out.println("Tenes turno disponible el dia " + l.getDayOfWeek() + " a las " + k);
+                        fechasDisponible.add(l);
+                        horas.add(k);
+                        i++;
+                    }
+                }
+            }
+            else
+                for (int h = t.getHour(); h<=m.getHoraFin() && i<10; h++) {
+                    if (h>=m.getHoraInicio()) {
+                        if (m.getTurnosDelDia(l).size() > j) {
+                            if (h!= m.getTurnosDelDia(l).get(j).getHoraTurno()) {
+                                System.out.println("Tenes turno disponible el dia " + l.getDayOfWeek() + " a las " + h);
+                                fechasDisponible.add(l);
+                                horas.add(h);
+                                i++;
+                            }
+                            else {
+                                j++;
+                            }
+                        }
+                        else {
+                            System.out.println("Tenes turno disponible el dia " + l.getDayOfWeek() + " a las " + h);
+                            fechasDisponible.add(l);
+                            horas.add(h);
+                            i++;
+                        }
+                    }
+                }
+            l = l.plusDays(1);
+            t= LocalTime.of(8, 00);
+        }
+
     }
 
 
@@ -184,6 +213,66 @@ public class Plataforma {
         System.out.println(" -Horario de atencion: " + m.getHoraInicio() + " - " + m.getHoraFin());
     }
 
+    public static int reconfirmarDatos(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Ingrese su DNI:");
+        int dni = entrada.nextInt();
+        System.out.println("Ingrese su nombre:");
+        String nombre = entrada.next();
+        System.out.println("Ingrese su apellido:");
+        String apellido = entrada.next();
+        System.out.println("Ingrese su direccion:");
+        Scanner aux = new Scanner(System.in);
+        String direccion = aux.nextLine();
+        System.out.println("Ingrese su telefono:");
+        long telefono = entrada.nextLong();
+        System.out.println("Ingrese su email:");
+        String email = entrada.next();
+        System.out.println("Ingrese su obra social:");
+        String obraSoc = entrada.next();
+        System.out.println("Ingrese su numero de afiliado:");
+        int nroAfiliado = entrada.nextInt();
+        return(dni);
+    }
+
+    public static void mostrarDetalle(Turno turno){
+        System.out.print("Dia y hora de reserva: ");
+        LocalDate l = LocalDate.now();
+        LocalTime t = LocalTime.now();
+        System.out.println(l+" - "+t+" hs");
+        System.out.print("Informacion del medico: ");
+        System.out.println(turno.getMedico().toString());
+    }
+
+    public static void seleccionarTurno(String nombreCompleto){
+        Scanner scanner= new Scanner(System.in);
+        System.out.println("Si desea seleccionar un turno, oprima 's', de lo contrario cualquier otro caracter");
+        String linea = scanner.next();
+        if(linea.equals("s")){
+            LocalDate d1= ingresarFechaTurno();
+            int h= ingresarHoraTurno();
+            ArrayList<Medico> meds = new ArrayList<>();
+            Medico m=null; Secretaria s=null;
+            for (Map.Entry<Integer, Secretaria> entry: cuentasSecretaria.entrySet()) {
+                if(entry.getValue().getMedico(nombreCompleto)!=null) {
+                    s = entry.getValue();
+                    m = s.getMedico(nombreCompleto);
+                }
+            }
+            System.out.println("Reconfirme sus datos por favor");
+            int dni=reconfirmarDatos();
+            Paciente paciente= cuentasPaciente.get(dni);
+            Turno turno= new Turno(paciente, m, d1, h);
+
+            if((s!=null) && (s.addTurno(turno))) {
+                System.out.println("Se reservo el turno con exito");
+                mostrarDetalle(turno);
+                paciente.addTurno(turno);
+            }
+        }
+
+    }
+
     public static void mostrarMedicosQueCumplen(Filtro filtro) {
         ArrayList<Medico> meds = new ArrayList<>();
         ArrayList<Medico> resultado = new ArrayList<>();
@@ -210,6 +299,7 @@ public class Plataforma {
                     if (med.equals(nombreCompleto)) {
                         verHorariosDelMedico(m);
                         verProximosTurnos(m);
+                        seleccionarTurno(nombreCompleto);
                     }
                 }
             }
@@ -219,6 +309,7 @@ public class Plataforma {
     public static void menuPaciente(Paciente p){
         Scanner scanner = new Scanner(System.in);
         int opcion;
+        Turno turno=null;
         Filtro filtro;
         ArrayList <Medico> resultado = new ArrayList<>();
         boolean salir = false;
@@ -270,8 +361,6 @@ public class Plataforma {
         cuentasSecretaria.put(1, s1);
         cuentasSecretaria.put(2, s2);
 
-
-
         Medico m1 = new Medico(1, "Lucas", "Quiroga", "Colombia 622", 123456, 38178273, "quiroga@gmail.com", 11, 17, "Neurologia", "ioma");
         Medico m2 = new Medico(2, "Alfredo", "Macri", "Garibaldi 1050", 654321, 30123456, "alfredoMacri_doc@gmail.com", 11, 17, "Cardiologia", "osde");
         Medico m3 = new Medico(3, "Paloma", "Isern", "San martin 995", 432564, 17167456, "paloiser_doc@gmail.com", 11, 17, "Dermatologia", "ioma");
@@ -311,24 +400,8 @@ public class Plataforma {
         s2.addTurno(t6);
 
 
-
-        //System.out.println("Datos del sistema:");
-        //System.out.println("-----------------------");
-        /*
-        for(Map.Entry<Integer, Secretaria> entry: cuentas.entrySet())
-            entry.getValue().printTurnos();
-
-        System.out.println("-----------------------");
-        */
-
-
-
         Secretaria s = null;
-        Paciente p= null;
-        int opcion;
-        String nombreCompleto=null;
-        LocalDate date = null, date1=null;
-        int hora = 0, hora1=0;
+        Paciente p;
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Identifiquese como secretaria o paciente, ingresando 's' o 'p' respectivamente:");
@@ -337,41 +410,21 @@ public class Plataforma {
             System.out.println("Identifiquese como paciente registrado o nuevo, ingresando 'r' o 'n'");
             linea = scanner.next();
             if (linea.equals("n")) {
-                Scanner entrada = new Scanner(System.in);
-                System.out.println("Ingrese su DNI:");
-                int dni = entrada.nextInt();
-                System.out.println("Ingrese su nombre:");
-                String nombre = entrada.next();
-                System.out.println("Ingrese su apellido:");
-                String apellido = entrada.next();
-                System.out.println("Ingrese su direccion:");
-                Scanner aux = new Scanner(System.in);
-                String direccion = aux.nextLine();
-                System.out.println("Ingrese su telefono:");
-                long telefono = entrada.nextLong();
-                System.out.println("Ingrese su email:");
-                String email = entrada.next();
-                System.out.println("Ingrese su obra social:");
-                String obraSoc = entrada.next();
-                System.out.println("Ingrese su numero de afiliado:");
-                int nroAfiliado = entrada.nextInt();
-                p = new Paciente(nombre,apellido,direccion,telefono,dni,email,obraSoc,nroAfiliado);
-                System.out.println("El paciente se registro con exito");
+                p=registrarPaciente();
                 cuentasPaciente.put(p.getDni(),p);
                 menuPaciente(p);
-            }else
-            {p = loginPaciente();
+            }
+            else {
+                p = loginPaciente();
                 if (p != null)
-                    menuPaciente(p);}
-
+                    menuPaciente(p);
+            }
         }
         if(linea.equals("s"))
             s= login();
 
         if ((s!=null) && (linea.equals("s")))
             menuSecretaria(s);
-
-
     }
 
 }

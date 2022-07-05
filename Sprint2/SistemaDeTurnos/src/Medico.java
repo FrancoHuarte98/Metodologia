@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Medico extends Persona {
@@ -108,12 +109,25 @@ public class Medico extends Persona {
     }
 
     public List<Turno> getTurnosDelDia(LocalDate f){
-    	List<Turno> r = new ArrayList<Turno>();
-    	for (Turno turno: turnos) {
-    		if (turno.getFechaturno().equals(f))
-    			r.add(turno);
-    	}
-		return r;    	
+        List<Turno> r = new ArrayList<Turno>();
+        for (Turno turno: turnos) {
+            if (turno.getFechaturno().equals(f))
+                r.add(turno);
+        }
+        Comparator<Turno> c = new Comparator<Turno>() {
+            @Override
+            public int compare(Turno o1, Turno o2) {
+                if (o1.getHoraTurno() < o2.getHoraTurno())
+                    return -1;
+                return 1;
+            }
+        };
+        r.sort(c);
+        return r;
+    }
+
+    public String toString(){
+        return("Nombre: " + this.getNombre() + this.getApellido() + " - Especialidad: "+ getEspecialidad()+ " - Obra social: "+getObraSocial());
     }
 
 }

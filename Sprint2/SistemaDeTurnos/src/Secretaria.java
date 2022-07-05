@@ -18,9 +18,9 @@ public class Secretaria extends Persona {
         return new ArrayList<Medico> (medicos);
     }
 
-    public Medico getMedico(int matricula){
+    public Medico getMedico(String nombreCompleto){
         for(Medico medico: medicos)
-            if((medico.getMatricula()==matricula)&& (medico.getMatricula()==matricula))
+            if((medico.getNombre()+medico.getApellido()).equals(nombreCompleto))
                 return medico;
         return null;
     }

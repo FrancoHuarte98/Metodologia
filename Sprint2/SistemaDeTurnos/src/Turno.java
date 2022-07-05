@@ -36,6 +36,9 @@ public class Turno {
         this.fechaturno = fecha;
     }
 
+    public void setPaciente(Paciente p){
+        this.paciente=p;
+    }
     @Override
     public String toString() {
         return "Turno de [paciente=" + paciente.getNombre() + " "+ paciente.getApellido() + ", medico=" + medico.getNombre() + " " + medico.getApellido() + ", fechaturno=" + fechaturno +", horaturno: " + horaTurno +" hs"+"]";
